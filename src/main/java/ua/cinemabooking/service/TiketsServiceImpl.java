@@ -71,7 +71,7 @@ public class TiketsServiceImpl implements  TiketsService {
         Seats seats1= new Seats();
         seats1.setMap(freeseats);
 //        seats1.setPrice(seans.getMovie().getPrice());
-        seats1.setFilmDate(seans.getStart());
+        seats1.setFilmDate(seans.getTime());
         seats1.setFilmName(seans.getMovie().getName());
         return seats1;
     }

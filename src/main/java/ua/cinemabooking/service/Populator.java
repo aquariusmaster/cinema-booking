@@ -9,7 +9,6 @@ import ua.cinemabooking.repository.MovieRepository;
 import ua.cinemabooking.repository.PlaceRepository;
 import ua.cinemabooking.repository.SeansRepository;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.List;
@@ -49,7 +48,7 @@ public class Populator {
         for (int i = SEANSES_STARTS; i < SEANSES_ENDS; i++) {
             Seans seans = new Seans();
             LocalDateTime start = LocalDateTime.of(2017, Month.FEBRUARY, 4, i, 0);
-            seans.setStart(start);
+            seans.setTime(start);
             Random r = new Random();
             List<Movie> all = (List<Movie>) movieRepository.findAll();
             int size = all.size();

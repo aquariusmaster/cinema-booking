@@ -81,7 +81,7 @@
                     <img class="img-responsive" src="http://placehold.it/700x400" alt=""/>
                 </a>
                 <h3>
-                    <a th:href="${movie.getName()}" href="#">Фильм 1</a>
+                    <a th:text="${movie.getName()}" href="#">Фильм 1</a>
                 </h3>
                 <p th:text="${movie.getDescription()}">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
             </div>

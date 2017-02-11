@@ -1,5 +1,6 @@
 package ua.cinemabooking;
 
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,7 +28,11 @@ public class MovieRepositoryTest {
     @Autowired
     MovieRepository movieRepository;
 
-    @Ignore
+    @Before
+    public void clearDatabase(){
+        movieRepository.deleteAll();
+    }
+
     @Test
     public void saveMovieTest(){
 

@@ -14,7 +14,7 @@ public class Seans {
 
     @Id @GeneratedValue
     private Long seansId;
-    private LocalDateTime start;
+    private LocalDateTime time;
     @ManyToOne
     private Movie movie;
     @Transient
@@ -32,12 +32,12 @@ public class Seans {
         this.seansId = seansId;
     }
 
-    public LocalDateTime getStart() {
-        return start;
+    public LocalDateTime getTime() {
+        return time;
     }
 
-    public void setStart(LocalDateTime start) {
-        this.start = start;
+    public void setTime(LocalDateTime time) {
+        this.time = time;
     }
 
     public Movie getMovie() {
@@ -63,14 +63,14 @@ public class Seans {
 
         Seans seans = (Seans) o;
 
-        if (start != null ? !start.equals(seans.start) : seans.start != null) return false;
+        if (time != null ? !time.equals(seans.time) : seans.time != null) return false;
         return movie != null ? movie.equals(seans.movie) : seans.movie == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = start != null ? start.hashCode() : 0;
+        int result = time != null ? time.hashCode() : 0;
         result = 31 * result + (movie != null ? movie.hashCode() : 0);
         return result;
     }
@@ -94,7 +94,7 @@ public class Seans {
     public String toString() {
         return "Seans{" +
                 "seansId=" + seansId +
-                ", start=" + start +
+                ", time=" + time +
                 ", movie=" + movie.getName() +
                 ", tickets=" + tickets +
                 '}';

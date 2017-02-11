@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class ControllerView {
 
 
-    @RequestMapping(value = {"/" ,"/afisha"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/test" ,"/afisha"}, method = RequestMethod.GET)
     public String getAfisha(){
 
         return "afisha";

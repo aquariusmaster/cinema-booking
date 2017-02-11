@@ -1,5 +1,7 @@
 package ua.cinemabooking.controllers;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +17,8 @@ import java.util.List;
 @Controller
 public class MovieController {
 
+    private static Logger logger = LoggerFactory.getLogger(MovieController.class);
+
     @Autowired
     private MovieRepository movieRepository;
 
@@ -22,7 +26,10 @@ public class MovieController {
     public String getMovies(Model model){
 
         List<Movie> movies = movieRepository.findAll();
+        logger.info("getMovies:" + movies);
         model.addAttribute("movies", movies);
         return "afisha";
     }
+
+
 }
