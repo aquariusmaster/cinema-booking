@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * Created by macbookair on 04.02.17.
  */
 
-@Controller(value = "/")
+@Controller(value = "/test")
 //@Controller
 public class ControllerView {
 

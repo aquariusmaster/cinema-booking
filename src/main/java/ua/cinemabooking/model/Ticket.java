@@ -1,6 +1,7 @@
 package ua.cinemabooking.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * Created by RATIBOR on 04.02.2017.
@@ -12,6 +13,7 @@ public class Ticket {
     private Integer row;
     private Integer seat;
     private boolean isBought;
+    private BigDecimal price;
     @ManyToOne
     private Seans seans;
 
@@ -53,5 +55,13 @@ public class Ticket {
 
     public void setSeans(Seans seans) {
         this.seans = seans;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
     }
 }

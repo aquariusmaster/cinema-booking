@@ -15,7 +15,6 @@ public class Movie {
     private Long id;
     private String name;
     private String description;
-    private BigDecimal price;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "movie")
     private List<Seans> seanses = new ArrayList<>();
 
@@ -33,14 +32,6 @@ public class Movie {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
     }
 
     public String getDescription() {
