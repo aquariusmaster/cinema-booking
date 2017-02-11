@@ -18,11 +18,9 @@ public class Seans {
     @ManyToOne
     private Movie movie;
     @Transient
-    private final short SEATSCOUNT = 100;
+    private final static short SEATSCOUNT = 100;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "seans")
     private List<Ticket> tickets = new ArrayList<>(SEATSCOUNT);
-
-
 
     public Long getSeansId() {
         return seansId;
@@ -56,6 +54,21 @@ public class Seans {
         this.tickets = tickets;
     }
 
+    /*
+    Method do populate Ticket
+     */
+    public void initiateTickets(BigDecimal price) {
+
+        //TODO setup rows and seats
+        for(int i = 0; i < SEATSCOUNT; i++){
+
+            Ticket ticket = new Ticket();
+            ticket.setPrice(price);
+            ticket.setSeans(this);
+            tickets.add(ticket);
+        }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,20 +88,6 @@ public class Seans {
         return result;
     }
 
-    /*
-    Method do populate Ticket
-     */
-    public void initiateTickets(BigDecimal price) {
-
-        //TODO setup rows and seats
-        for(int i = 0; i < SEATSCOUNT; i++){
-
-            Ticket ticket = new Ticket();
-            ticket.setPrice(price);
-            ticket.setSeans(this);
-            tickets.add(ticket);
-        }
-    }
 
     @Override
     public String toString() {

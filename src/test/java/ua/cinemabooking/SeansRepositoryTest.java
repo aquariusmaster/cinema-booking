@@ -1,7 +1,6 @@
 package ua.cinemabooking;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +11,11 @@ import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.repository.MovieRepository;
 import ua.cinemabooking.repository.SeansRepository;
 
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
-
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
+
+import static org.hamcrest.Matchers.hasItem;
+import static org.hamcrest.Matchers.hasSize;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by andreb on 11.02.17.
@@ -25,7 +23,7 @@ import java.util.List;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MovieRepositoryTest {
+public class SeansRepositoryTest {
 
     @Autowired
     MovieRepository movieRepository;
@@ -39,36 +37,16 @@ public class MovieRepositoryTest {
     }
 
     @Test
-    public void saveMovieTest(){
-
-        Movie legionMovie = MovieBuilder.createThinMovie();
-
-        movieRepository.save(legionMovie);
-        List<Movie> fetchedMovies =  movieRepository.findAll();
-        System.out.println(fetchedMovies);
-        assertThat(fetchedMovies,  hasSize(1));
-
-    }
-
-    @Test
-    public void saveFullMovieTest(){
+    public void findSeansByMovieTest(){
 
         Movie legionMovie = MovieBuilder.createFullMovie();
         movieRepository.save(legionMovie);
         List<Movie> fetchedMovies =  movieRepository.findAll();
         System.out.println(fetchedMovies);
-        assertThat(fetchedMovies,  hasSize(1));
+        List<Seans> seanses = seansRepository.findByMovie(legionMovie);
+        System.out.println(seanses);
+        assertThat(seanses, hasSize(1));
+        assertThat(seanses, hasItem(legionMovie.getSeanses().get(0)));
 
     }
-
-    @Test
-    public void findByNameMovieTest(){
-
-        Movie legionMovie = MovieBuilder.createFullMovie();
-        movieRepository.save(legionMovie);
-        Movie fetched = movieRepository.findByName(legionMovie.getName());
-        assertThat(fetched, equalTo(legionMovie));
-
-    }
-
 }

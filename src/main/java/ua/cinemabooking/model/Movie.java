@@ -1,7 +1,6 @@
 package ua.cinemabooking.model;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,18 +11,18 @@ import java.util.List;
 public class Movie {
 
     @Id @GeneratedValue
-    private Long id;
+    private Long movieId;
     private String name;
     private String description;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "movie")
     private List<Seans> seanses = new ArrayList<>();
 
-    public Long getId() {
-        return id;
+    public Long getMovieId() {
+        return movieId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setMovieId(Long movieId) {
+        this.movieId = movieId;
     }
 
     public String getName() {
@@ -69,7 +68,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "id=" + id +
+                "movieId=" + movieId +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", seanses=" + seanses +

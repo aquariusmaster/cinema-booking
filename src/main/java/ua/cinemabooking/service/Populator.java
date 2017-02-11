@@ -6,7 +6,7 @@ import ua.cinemabooking.model.Movie;
 import ua.cinemabooking.model.Ticket;
 import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.repository.MovieRepository;
-import ua.cinemabooking.repository.PlaceRepository;
+import ua.cinemabooking.repository.TicketRepository;
 import ua.cinemabooking.repository.SeansRepository;
 
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class Populator {
     SeansRepository seansRepository;
 
     @Autowired
-    PlaceRepository placeRepository;
+    TicketRepository ticketRepository;
 
     private void populateMovies() {
         for (int i = 0; i < MOVIES_NUMBER; i++) {
@@ -66,7 +66,7 @@ public class Populator {
                     Ticket ticket = new Ticket();
                     ticket.setRow(i);
                     ticket.setSeat(j);
-                    placeRepository.save(ticket);
+                    ticketRepository.save(ticket);
                 }
             }
         }

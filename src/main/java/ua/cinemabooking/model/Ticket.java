@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 @Entity
 public class Ticket {
     @Id @GeneratedValue
-    private Long id;
+    private Long ticketId;
     private Integer row;
     private Integer seat;
     private boolean isBought;
@@ -17,12 +17,12 @@ public class Ticket {
     @ManyToOne
     private Seans seans;
 
-    public Long getId() {
-        return id;
+    public Long getTicketId() {
+        return ticketId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setTicketId(Long ticketId) {
+        this.ticketId = ticketId;
     }
 
     public Integer getRow() {
@@ -68,7 +68,7 @@ public class Ticket {
     @Override
     public String toString() {
         return "Ticket{" +
-                "id=" + id +
+                "ticketId=" + ticketId +
                 ", row=" + row +
                 ", seat=" + seat +
                 ", isBought=" + isBought +
