@@ -7,12 +7,12 @@ import java.math.BigDecimal;
  * Created by RATIBOR on 04.02.2017.
  */
 @Entity
-public class Ticket {
+public class Place {
     @Id @GeneratedValue
     private Long ticketId;
     private Integer row;
     private Integer seat;
-    private boolean isBought;
+    private boolean isAvailable;
     private BigDecimal price;
     @ManyToOne
     private Seans seans;
@@ -41,12 +41,12 @@ public class Ticket {
         this.seat = seat;
     }
 
-    public boolean isBought() {
-        return isBought;
+    public boolean isAvailable() {
+        return isAvailable;
     }
 
-    public void setBought(boolean bought) {
-        isBought = bought;
+    public void setAvailable(boolean available) {
+        isAvailable = available;
     }
 
     public Seans getSeans() {
@@ -67,11 +67,11 @@ public class Ticket {
 
     @Override
     public String toString() {
-        return "Ticket{" +
+        return "Place{" +
                 "ticketId=" + ticketId +
                 ", row=" + row +
                 ", seat=" + seat +
-                ", isBought=" + isBought +
+                ", isAvailable=" + isAvailable +
                 ", price=" + price +
                 '}';
     }

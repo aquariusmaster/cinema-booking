@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.cinemabooking.model.BillOrder;
 import ua.cinemabooking.model.Movie;
-import ua.cinemabooking.model.Ticket;
+import ua.cinemabooking.model.Place;
 import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.repository.BillOrderRepository;
 import ua.cinemabooking.repository.MovieRepository;
@@ -26,11 +26,9 @@ public class TiketsServiceImpl implements  TiketsService {
     MovieRepository movieRepository;
 
     @Override
-    public BillOrder createOrder(Seans seans, String email, Ticket ticket) {
+    public BillOrder createOrder(String email, List<Place> places) {
         BillOrder billOrder = new BillOrder();
-        billOrder.setSeans(seans);
         billOrder.setEmail(email);
-        billOrder.setTicket(ticket);
         billOrder.setPayed(false);
         billOrderRepository.save(billOrder);
         return billOrder;
@@ -56,22 +54,22 @@ public class TiketsServiceImpl implements  TiketsService {
         Seans seans = seansRepository.findOne(seansId);
         List<BillOrder> orderList = billOrderRepository.findBySeans(seans);
         List<Boolean> freeseats = new ArrayList<>();
-        for (int x = 0; x <10; x++) {
-            for (int y = 0; y <10 ; y++) {
-                Boolean resalt = true;
-                for (BillOrder order: orderList
-                        ) {
-                    if (order.getTicket().getRow()==x && order.getTicket().getSeat()==y && order.isPayed())
-                        resalt = false;
-                }
-                freeseats.add(resalt);
-
-            }
-        }
+//        for (int x = 0; x <10; x++) {
+//            for (int y = 0; y <10 ; y++) {
+//                Boolean resalt = true;
+//                for (BillOrder order: orderList
+//                        ) {
+//                    if (order.getPlaces().getRow()==x && order.getPlaces().getSeat()==y && order.isPayed())
+//                        resalt = false;
+//                }
+//                freeseats.add(resalt);
+//
+//            }
+//        }
         Seats seats1= new Seats();
         seats1.setMap(freeseats);
 //        seats1.setPrice(seans.getMovie().getPrice());
-        seats1.setFilmDate(seans.getTime());
+        seats1.setFilmDate(seans.getDateTime());
         seats1.setFilmName(seans.getMovie().getName());
         return seats1;
     }

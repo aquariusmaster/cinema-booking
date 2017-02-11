@@ -3,10 +3,10 @@ package ua.cinemabooking.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.cinemabooking.model.Movie;
-import ua.cinemabooking.model.Ticket;
+import ua.cinemabooking.model.Place;
 import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.repository.MovieRepository;
-import ua.cinemabooking.repository.TicketRepository;
+import ua.cinemabooking.repository.PlaceRepository;
 import ua.cinemabooking.repository.SeansRepository;
 
 import java.time.LocalDateTime;
@@ -33,7 +33,7 @@ public class Populator {
     SeansRepository seansRepository;
 
     @Autowired
-    TicketRepository ticketRepository;
+    PlaceRepository placeRepository;
 
     private void populateMovies() {
         for (int i = 0; i < MOVIES_NUMBER; i++) {
@@ -48,7 +48,7 @@ public class Populator {
         for (int i = SEANSES_STARTS; i < SEANSES_ENDS; i++) {
             Seans seans = new Seans();
             LocalDateTime start = LocalDateTime.of(2017, Month.FEBRUARY, 4, i, 0);
-            seans.setTime(start);
+            seans.setDateTime(start);
             Random r = new Random();
             List<Movie> all = (List<Movie>) movieRepository.findAll();
             int size = all.size();
@@ -63,10 +63,10 @@ public class Populator {
         for (Seans seans : all) {
             for (int i = 1; i < SEATS; i++) {
                 for (int j = 1; j < ROWS; j++) {
-                    Ticket ticket = new Ticket();
-                    ticket.setRow(i);
-                    ticket.setSeat(j);
-                    ticketRepository.save(ticket);
+                    Place place = new Place();
+                    place.setRow(i);
+                    place.setSeat(j);
+                    placeRepository.save(place);
                 }
             }
         }

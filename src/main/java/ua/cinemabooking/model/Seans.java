@@ -14,13 +14,13 @@ public class Seans {
 
     @Id @GeneratedValue
     private Long seansId;
-    private LocalDateTime time;
+    private LocalDateTime dateTime;
     @ManyToOne
     private Movie movie;
     @Transient
     private final static short SEATSCOUNT = 100;
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "seans")
-    private List<Ticket> tickets = new ArrayList<>(SEATSCOUNT);
+    private List<Place> places = new ArrayList<>(SEATSCOUNT);
 
     public Long getSeansId() {
         return seansId;
@@ -30,12 +30,12 @@ public class Seans {
         this.seansId = seansId;
     }
 
-    public LocalDateTime getTime() {
-        return time;
+    public LocalDateTime getDateTime() {
+        return dateTime;
     }
 
-    public void setTime(LocalDateTime time) {
-        this.time = time;
+    public void setDateTime(LocalDateTime dateTime) {
+        this.dateTime = dateTime;
     }
 
     public Movie getMovie() {
@@ -46,26 +46,26 @@ public class Seans {
         this.movie = movie;
     }
 
-    public List<Ticket> getTickets() {
-        return tickets;
+    public List<Place> getPlaces() {
+        return places;
     }
 
-    public void setTickets(List<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setPlaces(List<Place> places) {
+        this.places = places;
     }
 
     /*
-    Method do populate Ticket
+    Method do populate Place
      */
     public void initiateTickets(BigDecimal price) {
 
         //TODO setup rows and seats
         for(int i = 0; i < SEATSCOUNT; i++){
 
-            Ticket ticket = new Ticket();
-            ticket.setPrice(price);
-            ticket.setSeans(this);
-            tickets.add(ticket);
+            Place place = new Place();
+            place.setPrice(price);
+            place.setSeans(this);
+            places.add(place);
         }
     }
 
@@ -76,14 +76,14 @@ public class Seans {
 
         Seans seans = (Seans) o;
 
-        if (time != null ? !time.equals(seans.time) : seans.time != null) return false;
+        if (dateTime != null ? !dateTime.equals(seans.dateTime) : seans.dateTime != null) return false;
         return movie != null ? movie.equals(seans.movie) : seans.movie == null;
 
     }
 
     @Override
     public int hashCode() {
-        int result = time != null ? time.hashCode() : 0;
+        int result = dateTime != null ? dateTime.hashCode() : 0;
         result = 31 * result + (movie != null ? movie.hashCode() : 0);
         return result;
     }
@@ -93,9 +93,9 @@ public class Seans {
     public String toString() {
         return "Seans{" +
                 "seansId=" + seansId +
-                ", time=" + time +
+                ", dateTime=" + dateTime +
                 ", movie=" + movie.getName() +
-                ", tickets=" + tickets +
+                ", places=" + places +
                 '}';
     }
 }

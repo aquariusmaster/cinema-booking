@@ -2,7 +2,7 @@ package ua.cinemabooking.service;
 
 import ua.cinemabooking.model.BillOrder;
 import ua.cinemabooking.model.Movie;
-import ua.cinemabooking.model.Ticket;
+import ua.cinemabooking.model.Place;
 import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.serviceModel.Seats;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public interface TiketsService {
 
 
-    public BillOrder createOrder(Seans seans, String email, Ticket ticket);
+    public BillOrder createOrder(String email, List<Place> places);
 
     public BillOrder afterPay(BillOrder billOrder);
 

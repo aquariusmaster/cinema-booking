@@ -25,7 +25,7 @@ public class MovieBuilder {
         Seans seans = new Seans();
         seans.setMovie(legionMovie);
         LocalDateTime start = LocalDateTime.of(2017, 02, 11, 18, 00);
-        seans.setTime(start);
+        seans.setDateTime(start);
         seans.initiateTickets(new BigDecimal("75.00"));
         legionMovie.getSeanses().add(seans);
         return legionMovie;

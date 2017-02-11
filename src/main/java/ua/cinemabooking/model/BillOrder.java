@@ -2,6 +2,7 @@ package ua.cinemabooking.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * Created by RATIBOR on 04.02.2017.
@@ -10,26 +11,20 @@ import java.time.LocalDateTime;
 public class BillOrder {
 
     @Id @GeneratedValue
-    private Long id;
-
+    private Long billOrderId;
     private String email;
-
     private LocalDateTime dataTime;
-
-    @ManyToOne(targetEntity = Ticket.class, fetch = FetchType.EAGER)
-    private Ticket ticket;
-
-    @ManyToOne(targetEntity = Seans.class, fetch = FetchType.EAGER)
-    private Seans seans;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Place> places;
 
     private boolean payed;
 
-    public Long getId() {
-        return id;
+    public Long getBillOrderId() {
+        return billOrderId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setBillOrderId(Long billOrderId) {
+        this.billOrderId = billOrderId;
     }
 
     public String getEmail() {
@@ -48,20 +43,12 @@ public class BillOrder {
         this.dataTime = dataTime;
     }
 
-    public Ticket getTicket() {
-        return ticket;
+    public List<Place> getPlaces() {
+        return places;
     }
 
-    public void setTicket(Ticket ticket) {
-        this.ticket = ticket;
-    }
-
-    public Seans getSeans() {
-        return seans;
-    }
-
-    public void setSeans(Seans seans) {
-        this.seans = seans;
+    public void setPlaces(List<Place> places) {
+        this.places = places;
     }
 
     public boolean isPayed() {
