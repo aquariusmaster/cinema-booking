@@ -10,19 +10,19 @@ import java.time.LocalDateTime;
 public class BillOrder {
 
     @Id @GeneratedValue
-    Long id;
+    private Long id;
 
-    String email;
+    private String email;
 
-    LocalDateTime dataTime;
+    private LocalDateTime dataTime;
 
-    @ManyToOne(targetEntity = Place.class, fetch = FetchType.EAGER)
-    Place place;
+    @ManyToOne(targetEntity = Ticket.class, fetch = FetchType.EAGER)
+    private Ticket ticket;
 
     @ManyToOne(targetEntity = Seans.class, fetch = FetchType.EAGER)
-    Seans seans;
+    private Seans seans;
 
-    boolean payed;
+    private boolean payed;
 
     public Long getId() {
         return id;
@@ -48,12 +48,12 @@ public class BillOrder {
         this.dataTime = dataTime;
     }
 
-    public Place getPlace() {
-        return place;
+    public Ticket getTicket() {
+        return ticket;
     }
 
-    public void setPlace(Place place) {
-        this.place = place;
+    public void setTicket(Ticket ticket) {
+        this.ticket = ticket;
     }
 
     public Seans getSeans() {

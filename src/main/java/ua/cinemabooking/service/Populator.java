@@ -3,7 +3,7 @@ package ua.cinemabooking.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.cinemabooking.model.Movie;
-import ua.cinemabooking.model.Place;
+import ua.cinemabooking.model.Ticket;
 import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.repository.MovieRepository;
 import ua.cinemabooking.repository.PlaceRepository;
@@ -51,8 +51,6 @@ public class Populator {
             Seans seans = new Seans();
             LocalDateTime start = LocalDateTime.of(2017, Month.FEBRUARY, 4, i, 0);
             seans.setStart(start);
-            LocalDateTime end = LocalDateTime.of(2017, Month.FEBRUARY, 4, i, 55);
-            seans.setEnd(end);
             Random r = new Random();
             List<Movie> all = (List<Movie>) movieRepository.findAll();
             int size = all.size();
@@ -67,10 +65,10 @@ public class Populator {
         for (Seans seans : all) {
             for (int i = 1; i < SEATS; i++) {
                 for (int j = 1; j < ROWS; j++) {
-                    Place place = new Place();
-                    place.setX(i);
-                    place.setY(j);
-                    placeRepository.save(place);
+                    Ticket ticket = new Ticket();
+                    ticket.setRow(i);
+                    ticket.setSeat(j);
+                    placeRepository.save(ticket);
                 }
             }
         }

@@ -1,9 +1,9 @@
 package ua.cinemabooking.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by RATIBOR on 04.02.2017.
@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 @Entity
 public class Movie {
 
-    @Id
-    @GeneratedValue
-    Long id;
-
-    String name;
-
-    BigDecimal price;
+    @Id @GeneratedValue
+    private Long id;
+    private String name;
+    private String description;
+    private BigDecimal price;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "movie")
+    private List<Seans> seanses = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -41,5 +41,37 @@ public class Movie {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Seans> getSeanses() {
+        return seanses;
+    }
+
+    public void setSeanses(List<Seans> seanses) {
+        this.seanses = seanses;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Movie movie = (Movie) o;
+
+        return name != null ? name.equals(movie.name) : movie.name == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        return name != null ? name.hashCode() : 0;
     }
 }

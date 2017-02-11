@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.cinemabooking.model.BillOrder;
 import ua.cinemabooking.model.Movie;
-import ua.cinemabooking.model.Place;
+import ua.cinemabooking.model.Ticket;
 import ua.cinemabooking.model.Seans;
 import ua.cinemabooking.repository.BillOrderRepository;
 import ua.cinemabooking.repository.MovieRepository;
@@ -26,11 +26,11 @@ public class TiketsServiceImpl implements  TiketsService {
     MovieRepository movieRepository;
 
     @Override
-    public BillOrder createOrder(Seans seans, String email, Place place) {
+    public BillOrder createOrder(Seans seans, String email, Ticket ticket) {
         BillOrder billOrder = new BillOrder();
         billOrder.setSeans(seans);
         billOrder.setEmail(email);
-        billOrder.setPlace(place);
+        billOrder.setTicket(ticket);
         billOrder.setPayed(false);
         billOrderRepository.save(billOrder);
         return billOrder;
@@ -61,7 +61,7 @@ public class TiketsServiceImpl implements  TiketsService {
                 Boolean resalt = true;
                 for (BillOrder order: orderList
                         ) {
-                    if (order.getPlace().getX()==x && order.getPlace().getY()==y && order.isPayed())
+                    if (order.getTicket().getRow()==x && order.getTicket().getSeat()==y && order.isPayed())
                         resalt = false;
                 }
                 freeseats.add(resalt);

@@ -2,6 +2,8 @@ package ua.cinemabooking.model;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by RATIBOR on 04.02.2017.
@@ -9,22 +11,20 @@ import java.time.LocalDateTime;
 @Entity
 public class Seans {
 
-    @Id
-    @GeneratedValue
-    Long id;
+    @Id @GeneratedValue
+    private Long seansId;
+    private LocalDateTime start;
+    @ManyToOne
+    private Movie movie;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "seans")
+    private List<Ticket> tickets = new ArrayList<>();
 
-    LocalDateTime start;
-    LocalDateTime end;
-
-    @ManyToOne(targetEntity = Movie.class)
-    Movie movie;
-
-    public Long getId() {
-        return id;
+    public Long getSeansId() {
+        return seansId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setSeansId(Long seansId) {
+        this.seansId = seansId;
     }
 
     public LocalDateTime getStart() {
@@ -35,19 +35,38 @@ public class Seans {
         this.start = start;
     }
 
-    public LocalDateTime getEnd() {
-        return end;
-    }
-
-    public void setEnd(LocalDateTime end) {
-        this.end = end;
-    }
-
     public Movie getMovie() {
         return movie;
     }
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public List<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(List<Ticket> tickets) {
+        this.tickets = tickets;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Seans seans = (Seans) o;
+
+        if (start != null ? !start.equals(seans.start) : seans.start != null) return false;
+        return movie != null ? movie.equals(seans.movie) : seans.movie == null;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = start != null ? start.hashCode() : 0;
+        result = 31 * result + (movie != null ? movie.hashCode() : 0);
+        return result;
     }
 }
