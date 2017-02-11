@@ -40,7 +40,6 @@ public class Populator {
         for (int i = 0; i < MOVIES_NUMBER; i++) {
             Movie movie = new Movie();
             movie.setName("movie " + i);
-            movie.setPrice(new BigDecimal(50 + i * 10));
             movieRepository.save(movie);
         }
 

@@ -64,4 +64,15 @@ public class Ticket {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return "Ticket{" +
+                "id=" + id +
+                ", row=" + row +
+                ", seat=" + seat +
+                ", isBought=" + isBought +
+                ", price=" + price +
+                '}';
+    }
 }
